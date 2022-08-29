@@ -25,7 +25,13 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
+      - name: Compare file differences in the folder
+        run: git diff --ignore-all-space artifacts/ /tmp/
+        id: diff
+
+      # If index.js was different than expected, upload the expected version as an artifact
       - uses: actions/upload-artifact@v3
+        if: ${{ failure() && steps.diff.conclusion == 'failure' }}
         with:
-          name: my-artifact
-          path: artifacts/ # or path/to/artifact
+          name: ArtifactV2
+          path: artifacts/
