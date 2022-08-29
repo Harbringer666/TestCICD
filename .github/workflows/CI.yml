@@ -27,6 +27,9 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Create releases folder
+        run: mkdir releases/
+        
       - name: Compare file differences in the folder
         run:  git diff --name-only --diff-filter=AMR HEAD^1 HEAD | xargs -I '{}' cp --parents -r '{}' releases/
         id: diff
