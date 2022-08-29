@@ -28,7 +28,7 @@ jobs:
           fetch-depth: 0
 
       - name: Compare file differences in the folder
-        run: git diff --name-only --diff-filter=AMR HEAD^1 HEAD | xargs -I '{}' cp -pv --parents $(git diff --name-only) releases/
+        run: git diff --name-only --diff-filter=AMR HEAD^1 HEAD | xargs -I '{}' cp -pv --parents $(git diff --name-only) /releases/
         id: diff
 
       # If index.js was different than expected, upload the expected version as an artifact
