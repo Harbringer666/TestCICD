@@ -28,7 +28,7 @@ jobs:
           fetch-depth: 2
 
       - name: Compare file differences in the folder
-        run: git diff --name-only origin/main origin/${GITHUB_HEAD_REF}
+        run: git diff --name-only main ${GITHUB_HEAD_REF}
         id: diff
 
       # If index.js was different than expected, upload the expected version as an artifact
